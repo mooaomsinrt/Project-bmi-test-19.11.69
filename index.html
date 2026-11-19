@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="คำนวณดัชนีมวลกาย BMI สำหรับผู้ใหญ่ พร้อมเกณฑ์ประเมินสำหรับประชากรเอเชีย">
+  <title>เครื่องคำนวณ BMI | ดูแลสุขภาพของคุณ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{font-family:Prompt,system-ui,sans-serif;color:#173d32;background:#f1f7f4;font-synthesis:none}*{box-sizing:border-box}body{margin:0;min-height:100vh}button,input{font:inherit}a{color:#247657}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #e6ae4e;outline-offset:3px}.page{max-width:1000px;margin:auto;padding:48px 24px 60px}.brand{display:flex;align-items:center;gap:10px;font-size:.85rem;font-weight:600;letter-spacing:.04em}.brand-icon{display:grid;place-items:center;background:#d9eee3;color:#227956;width:38px;height:38px;border-radius:12px;font-size:1.4rem}.intro{max-width:640px;margin:46px 0 30px}.eyebrow{color:#288160;font-size:.8rem;font-weight:600;letter-spacing:.12em}.intro h1{font-size:clamp(2rem,5vw,3rem);line-height:1.25;letter-spacing:-.03em;margin:10px 0 12px}.intro p{margin:0;color:#5b7468;line-height:1.8}.layout{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}.panel{background:#fff;border:1px solid #dfece5;border-radius:22px;padding:28px;box-shadow:0 14px 40px #214c3710}.panel h2{font-size:1.15rem;margin:0 0 5px}.muted{color:#647c70;line-height:1.7;font-size:.9rem;margin:0}.field{margin-top:22px}.field label{display:block;font-size:.9rem;font-weight:600;margin-bottom:8px}.input-wrap{position:relative}.input-wrap input{width:100%;height:56px;padding:0 70px 0 16px;border:1px solid #ccddd4;border-radius:12px;background:#fbfdfc;color:#173d32;font-size:1.05rem}.input-wrap input:focus{border-color:#27815d}.unit{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:#6b8075;font-size:.85rem}.error{color:#a13939;margin:10px 0 0;min-height:1.3em;font-size:.85rem}.buttons{display:flex;gap:10px;margin-top:18px}.buttons button{border:0;border-radius:12px;min-height:52px;cursor:pointer;font-weight:600}.primary{background:#236c50;color:#fff;flex:1}.primary:hover{background:#19543e}.secondary{background:#eaf3ee;color:#285842;padding:0 18px}.secondary:hover{background:#dcece2}.result-panel{min-height:365px;display:flex;flex-direction:column}.placeholder{display:grid;place-content:center;flex:1;text-align:center;padding:24px 10px}.placeholder-icon{display:grid;place-items:center;width:74px;height:74px;margin:0 auto 16px;border-radius:24px;background:#e7f4ed;color:#27815d;font-size:2rem}.placeholder strong{font-size:1rem}.placeholder p{margin:7px 0 0;color:#758c80;font-size:.85rem}.result-label{color:#678074;font-size:.85rem;margin-top:23px}.result-top{display:flex;align-items:end;gap:14px;flex-wrap:wrap}.bmi{font-size:3.6rem;font-weight:700;line-height:1.15;letter-spacing:-.04em}.badge{margin-bottom:9px;padding:5px 11px;background:#e3f2ea;color:#216748;border-radius:100px;font-size:.85rem;font-weight:600}.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:25px}.scale span{height:10px;border-radius:10px;background:#e6eeea}.scale span.active{background:var(--category-color,#27815d)}.scale-labels{display:flex;justify-content:space-between;color:#75897f;font-size:.72rem;margin-top:7px}.result-note{font-size:.9rem;color:#567063;line-height:1.7;margin:20px 0 0}.standards{margin-top:20px}.standards h2{margin-bottom:12px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.9rem;text-align:left}th,td{padding:11px 10px;border-bottom:1px solid #eaf1ed}th{color:#637b6f;font-weight:500}tbody tr:last-child td{border-bottom:0}.footnote{color:#6c8075;font-size:.8rem;line-height:1.8;margin:15px 0 0}.footnote a{overflow-wrap:anywhere}.privacy{text-align:center;margin:24px 0 0;color:#788e82;font-size:.8rem}[hidden]{display:none!important}@media(max-width:680px){.page{padding:26px 16px 40px}.intro{margin:34px 0 24px}.layout{grid-template-columns:1fr}.panel{padding:22px}.result-panel{min-height:280px}.bmi{font-size:3rem}}
+    /* Refined, responsive presentation */
+    :root{color:#173f36;background:#edf5f0}
+    body{background:radial-gradient(circle at 88% 4%,#d8efe1 0,transparent 30rem),linear-gradient(145deg,#f6faf7,#eaf3ee)}
+    .page{max-width:1120px;padding:36px 24px 70px}
+    .brand{color:#285a49;font-size:.78rem;letter-spacing:.14em}
+    .brand-icon{width:42px;height:42px;border-radius:14px;background:#185f48;color:#fff;box-shadow:0 7px 18px #195c3d26}
+    .intro{position:relative;max-width:none;margin:54px 0 34px;padding-right:150px}
+    .intro::after{content:'BMI';position:absolute;right:6px;bottom:-28px;color:#dcece2;font-size:clamp(5rem,12vw,9rem);font-weight:700;letter-spacing:-.08em;line-height:1;z-index:-1}
+    .eyebrow{display:inline-block;color:#247454;background:#dcefe3;border:1px solid #cce6d6;border-radius:100px;padding:7px 14px;letter-spacing:.03em}
+    .intro h1{font-size:clamp(2rem,5vw,3.2rem);margin:16px 0 12px;letter-spacing:-.04em}
+    .intro p{max-width:590px;font-size:1rem}
+    .layout{grid-template-columns:1.05fr .95fr;gap:22px;align-items:stretch}
+    .panel{border-color:#e0ece5;border-radius:26px;padding:32px;box-shadow:0 20px 55px #244f3710}
+    .panel h2{font-size:1.2rem;letter-spacing:-.02em}
+    .field{margin-top:24px}.field label{color:#284c3d}
+    .input-wrap input{height:60px;border-radius:14px;background:#f7faf8;border-color:#dce9e1;transition:border-color .2s,box-shadow .2s}
+    .input-wrap input:focus{background:#fff;box-shadow:0 0 0 4px #d9eee2;outline:none}
+    .unit{color:#53806c;font-weight:500}
+    .buttons{gap:12px;margin-top:14px}.buttons button{min-height:56px;border-radius:14px;transition:background .2s,transform .2s}.buttons button:hover{transform:translateY(-2px)}
+    .primary{background:#1c6a4f;box-shadow:0 8px 20px #1c6a4f26}.secondary{background:#edf5f0}
+    .result-panel{position:relative;overflow:hidden;min-height:400px;background:linear-gradient(145deg,#194f40,#123c33);border:0;color:#fff;box-shadow:0 20px 50px #173f3333}
+    .result-panel::after{content:'';position:absolute;right:-100px;top:-125px;width:300px;height:300px;border:1px solid #ffffff1c;border-radius:50%;box-shadow:0 0 0 35px #ffffff08,0 0 0 70px #ffffff06;pointer-events:none}
+    .result-panel>*{position:relative;z-index:1}.result-panel .muted{color:#c3dcd0}
+    .placeholder{padding:38px 10px}.placeholder-icon{width:96px;height:96px;border:1px solid #ffffff38;background:#ffffff12;color:#d6f5dd;border-radius:32px;font-size:2.8rem}.placeholder strong{font-size:1.1rem}.placeholder p{color:#c0d8ca}
+    .result-label{color:#bedace;margin-top:34px}.bmi{font-size:4.5rem;color:#fff}.badge{background:#d6efdf;color:#1b6246;padding:7px 14px}
+    .scale{gap:6px;margin-top:34px}.scale span{height:12px;background:#ffffff40}.scale span.active{background:var(--category-color,#95dfb4);outline:2px solid #fff;outline-offset:3px}
+    .scale-labels{color:#c6dcd1;font-size:.78rem}.result-note{color:#d3e6da;background:#ffffff0d;border:1px solid #ffffff1a;border-radius:14px;padding:14px 16px}
+    .standards{margin-top:22px;padding:30px 32px}.standards h2{margin-bottom:18px}.table-wrap{border:1px solid #e5efe9;border-radius:15px}table{font-size:.92rem}th,td{padding:13px 18px}th{background:#f2f8f4;color:#537263}tbody tr:hover{background:#f8fbf9}.footnote{margin-top:18px;color:#607b6c}.privacy{margin-top:28px}
+    @media(max-width:680px){.page{padding:24px 16px 46px}.intro{margin:40px 0 28px;padding-right:0}.intro::after{font-size:5rem;bottom:-15px;opacity:.55}.intro h1{max-width:350px}.layout{grid-template-columns:1fr;gap:16px}.panel,.standards{padding:24px;border-radius:22px}.result-panel{min-height:310px}.placeholder{padding:25px 10px}.bmi{font-size:3.6rem}.standards{margin-top:16px}th,td{padding:12px}}
+    .field select{width:100%;height:60px;padding:0 48px 0 16px;border:1px solid #dce9e1;border-radius:14px;background:#f7faf8;color:#173d32;font:inherit;appearance:none;background-image:linear-gradient(45deg,transparent 50%,#53806c 50%),linear-gradient(135deg,#53806c 50%,transparent 50%);background-position:calc(100% - 23px) 27px,calc(100% - 18px) 27px;background-size:5px 5px;background-repeat:no-repeat}.field select:focus-visible{outline:3px solid #e6ae4e;outline-offset:3px}.field-hint{margin:8px 0 0;color:#5b7468;font-size:.8rem;line-height:1.7}.age-check{display:flex;align-items:flex-start;gap:11px;margin-top:24px;color:#284c3d;font-size:.9rem;line-height:1.7}.age-check input{flex:none;width:20px;height:20px;margin:2px 0 0;accent-color:#1c6a4f}.age-check input:focus-visible{outline:3px solid #e6ae4e;outline-offset:3px}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="brand"><span class="brand-icon" aria-hidden="true">✳</span> HEALTH CHECK</div>
+    <header class="intro"><span class="eyebrow">เริ่มต้นดูแลตัวเอง</span><h1>คำนวณค่าดัชนีมวลกาย</h1><p>ทำความรู้จักค่า BMI ของคุณ เพื่อใช้เป็นข้อมูลเบื้องต้นในการดูแลสุขภาพ</p></header>
+    <div class="layout">
+      <section class="panel" aria-labelledby="form-title">
+        <h2 id="form-title">ข้อมูลของคุณ</h2><p class="muted">สำหรับผู้ใหญ่อายุ 18 ปีขึ้นไป</p>
+        <form id="bmi-form" novalidate>
+          <label class="age-check" for="adult"><input id="adult" type="checkbox" aria-describedby="form-error"><span>ฉันยืนยันว่ามีอายุ 18 ปีขึ้นไป</span></label>
+          <div class="field"><label for="gender">เพศ <span class="muted">(ไม่บังคับ)</span></label><select id="gender" name="gender" aria-describedby="gender-hint"><option value="">ไม่ระบุ</option><option value="female">หญิง</option><option value="male">ชาย</option><option value="other">เพศอื่น ๆ</option></select><p class="field-hint" id="gender-hint">สูตรและเกณฑ์ BMI สำหรับผู้ใหญ่ที่ใช้ในหน้านี้เหมือนกันทุกเพศ</p></div>
+          <div class="field"><label for="weight">น้ำหนัก</label><div class="input-wrap"><input id="weight" type="number" inputmode="decimal" min="0" step="any" placeholder="เช่น 60" required aria-describedby="form-error"><span class="unit">กก.</span></div></div>
+          <div class="field"><label for="height">ส่วนสูง</label><div class="input-wrap"><input id="height" type="number" inputmode="decimal" min="0" step="any" placeholder="เช่น 165" required aria-describedby="form-error"><span class="unit">ซม.</span></div></div>
+          <p class="error" id="form-error" role="alert"></p>
+          <div class="buttons"><button class="primary" type="submit">คำนวณ BMI</button><button class="secondary" type="reset">ล้างข้อมูล</button></div>
+        </form>
+      </section>
+      <section class="panel result-panel" aria-labelledby="result-title"><h2 id="result-title">ผลการประเมิน</h2><p class="muted">เกณฑ์สำหรับประชากรเอเชีย</p>
+        <div class="placeholder" id="placeholder"><div class="placeholder-icon" aria-hidden="true">♡</div><strong>เริ่มต้นได้ง่าย ๆ</strong><p>กรอกน้ำหนักและส่วนสูงเพื่อดูผล BMI</p></div>
+        <div id="result" aria-live="polite" hidden><div class="result-label">ค่า BMI ของคุณ (กก./ม²)</div><div class="result-top"><span class="bmi" id="bmi-value"></span><span class="badge" id="bmi-category"></span></div><div class="scale" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><div class="scale-labels" aria-hidden="true"><span>ต่ำกว่าเกณฑ์</span><span>สูงกว่าเกณฑ์</span></div><p class="result-note">BMI เป็นข้อมูลคัดกรองเบื้องต้น ไม่ได้บอกสุขภาพทั้งหมดหรือคุณค่าของคุณ หากมีข้อสงสัย สามารถปรึกษาบุคลากรทางการแพทย์ ผลประเมินใช้ค่าก่อนปัดเศษ</p></div>
+      </section>
+    </div>
+    <section class="panel standards" aria-labelledby="standards-title"><h2 id="standards-title">เกณฑ์ BMI สำหรับผู้ใหญ่</h2><p class="muted">อ้างอิงจุดแบ่งสำหรับประชากรเอเชียตามกรมอนามัย เกณฑ์ของหน่วยงานอื่นอาจแตกต่างกัน</p><div class="table-wrap"><table><thead><tr><th scope="col">ค่า BMI (กก./ม²)</th><th scope="col">ผลการประเมิน</th></tr></thead><tbody><tr><td>ต่ำกว่า 18.5</td><td>ค่า BMI ต่ำกว่าเกณฑ์</td></tr><tr><td>18.5 ถึงต่ำกว่า 23</td><td>ค่า BMI อยู่ในเกณฑ์</td></tr><tr><td>23 ถึงต่ำกว่า 25</td><td>ค่า BMI สูงกว่าเกณฑ์ ช่วง 23–ต่ำกว่า 25</td></tr><tr><td>25 ถึงต่ำกว่า 30</td><td>ค่า BMI สูงกว่าเกณฑ์ ช่วง 25–ต่ำกว่า 30</td></tr><tr><td>ตั้งแต่ 30 ขึ้นไป</td><td>ค่า BMI สูงกว่าเกณฑ์ ช่วง 30 ขึ้นไป</td></tr></tbody></table></div><p class="footnote">ถ้อยคำในตารางปรับให้อ่านอย่างเป็นกลาง BMI ไม่ใช่การวินิจฉัยโรคและไม่สามารถแยกกล้ามเนื้อออกจากไขมัน ควรพิจารณาร่วมกับข้อมูลสุขภาพอื่น ๆ ระหว่างตั้งครรภ์ การแปลผลต้องพิจารณาเป็นพิเศษ ควรปรึกษาบุคลากรทางการแพทย์<br>ที่มา: <a href="https://nutrition2.anamai.moph.go.th/th/cms-of-24/download?did=14236&id=40280&lang=th&mid=9404&mkey=m_document" target="_blank" rel="noopener noreferrer">กรมอนามัย กระทรวงสาธารณสุข</a> · <a href="https://www.nhs.uk/conditions/overweight-and-obesity/" target="_blank" rel="noopener noreferrer">NHS: ข้อจำกัดของ BMI</a></p></section>
+    <p class="privacy">คำนวณบนอุปกรณ์ของคุณ โดยไม่ส่งหรือบันทึกข้อมูล</p>
+  </main>
+  <script>
+    const form = document.getElementById('bmi-form');
+    const adult = document.getElementById('adult');
+    const weight = document.getElementById('weight');
+    const height = document.getElementById('height');
+    const error = document.getElementById('form-error');
+    const result = document.getElementById('result');
+    const placeholder = document.getElementById('placeholder');
+    const categories = [
+      { max: 18.5, label: 'ค่า BMI ต่ำกว่าเกณฑ์', color: '#5c8fb1' },
+      { max: 23, label: 'ค่า BMI อยู่ในเกณฑ์', color: '#27815d' },
+      { max: 25, label: 'สูงกว่าเกณฑ์ ช่วง 23–ต่ำกว่า 25', color: '#c38b26' },
+      { max: 30, label: 'สูงกว่าเกณฑ์ ช่วง 25–ต่ำกว่า 30', color: '#c36b38' },
+      { max: Infinity, label: 'สูงกว่าเกณฑ์ ช่วง 30 ขึ้นไป', color: '#b84a48' }
+    ];
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!adult.checked) {
+        error.textContent = 'กรุณายืนยันว่ามีอายุ 18 ปีขึ้นไปก่อนคำนวณ';
+        result.hidden = true; placeholder.hidden = false;
+        adult.focus();
+        return;
+      }
+      const kg = Number(weight.value), cm = Number(height.value);
+      const bmi = kg / (cm / 100) ** 2;
+      if (!weight.value || !height.value || !Number.isFinite(kg) || !Number.isFinite(cm) || kg <= 0 || cm <= 0 || !Number.isFinite(bmi) || bmi <= 0) {
+        const invalidWeight = !weight.value || !Number.isFinite(kg) || kg <= 0;
+        error.textContent = invalidWeight ? 'กรุณากรอกน้ำหนักเป็นตัวเลขที่มากกว่า 0' : (!height.value || !Number.isFinite(cm) || cm <= 0 ? 'กรุณากรอกส่วนสูงเป็นตัวเลขที่มากกว่า 0' : 'ไม่สามารถคำนวณจากค่าที่กรอกได้ กรุณาตรวจสอบอีกครั้ง');
+        result.hidden = true; placeholder.hidden = false;
+        (invalidWeight ? weight : height).focus();
+        return;
+      }
+      error.textContent = '';
+      const index = categories.findIndex(category => bmi < category.max);
+      const category = categories[index];
+      document.getElementById('bmi-value').textContent = bmi.toFixed(1);
+      document.getElementById('bmi-category').textContent = category.label;
+      result.style.setProperty('--category-color', category.color);
+      document.querySelectorAll('.scale span').forEach((segment, i) => segment.classList.toggle('active', i === index));
+      placeholder.hidden = true; result.hidden = false;
+    });
+    form.addEventListener('reset', () => { error.textContent = ''; result.hidden = true; placeholder.hidden = false; });
+  </script>
+</body>
+</html>
